@@ -1,0 +1,44 @@
+## Archivos y carpetas a excluir ##
+
+# Binarios y resultados de compilación
+bin/
+obj/
+
+# Archivos de usuario y configuraciones locales
+*.user
+*.suo
+*.userprefs
+*.lock.json
+
+# Dependencias (NuGet)
+packages/
+[Nn]u[Gg]et/
+*.nupkg
+
+# Archivos de salida y publicaciones
+out/
+publish/
+*.exe
+*.dll
+*.pdb
+*.xml
+
+# Archivos de IDE (Visual Studio, Rider, etc.)
+.vs/
+.idea/
+*.VC.db
+*.opendb
+
+# Logs y temporales
+*.log
+*.tmp
+*.cache
+
+# Pruebas y cobertura
+TestResults/
+*.coverage
+*.coveragexml
+
+# Archivos de configuración local (no compartidos)
+appsettings.Development.json
+local.settings.json
