@@ -1,6 +1,6 @@
 ﻿using proyectoHotel.interfaces;
 
-// comentario
+// prueba pull request
 namespace proyectoHotel.clases;
 
 public class HabitacionSuit: Habitacion, IMiniBar
