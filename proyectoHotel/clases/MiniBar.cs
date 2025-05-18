@@ -1,4 +1,6 @@
-﻿namespace proyectoHotel.clases;
+﻿using proyectoHotel.publishers;
+
+namespace proyectoHotel.clases;
 
 public class MiniBar
 {
@@ -17,9 +19,10 @@ public class MiniBar
 
     private Dictionary<string, byte> _productos;
 
-    public MiniBar(Dictionary<string, byte> productos)
+    public MiniBar(Dictionary<string, byte> productos, PublisherConsumoMiniBar publisher)
     {
         _productos = productos;
+        publisher.EventoConsumo += ManejarConsumo;
     }
 
     private void ManejarConsumo(string item, byte cantidad)

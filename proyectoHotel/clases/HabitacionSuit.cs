@@ -1,4 +1,5 @@
 ﻿using proyectoHotel.interfaces;
+using proyectoHotel.publishers;
 
 namespace proyectoHotel.clases;
 
@@ -22,10 +23,10 @@ public class HabitacionSuit: Habitacion, IMiniBar
     private static readonly byte MaxHabitaciones = 5;
     
 
-    public HabitacionSuit(uint numero, Piso piso, Tipo tipo, TipoCama tipoCama) : base(numero, piso, tipo, CostoNoche)
+    public HabitacionSuit(uint numero, Piso piso, Tipo tipo, TipoCama tipoCama, PublisherConsumoMiniBar publisher) : base(numero, piso, tipo, CostoNoche)
     {
         _tipoCama = tipoCama;
-        _miniBar = new MiniBar(Minibar);
+        _miniBar = new MiniBar(Minibar, publisher);
     }
 
     public void LlenarMiniBar()

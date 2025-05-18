@@ -1,4 +1,5 @@
 ﻿using proyectoHotel.interfaces;
+using proyectoHotel.publishers;
 
 namespace proyectoHotel.clases;
 
@@ -24,10 +25,10 @@ public class HabitacionEjecutiva: Habitacion, IMiniBar
     
 
 
-    public HabitacionEjecutiva(uint numero, Piso piso, Tipo tipo, double costoNoche, TipoCama tipoCama) : base(numero, piso, tipo, costoNoche)
+    public HabitacionEjecutiva(uint numero, Piso piso, Tipo tipo, double costoNoche, TipoCama tipoCama, PublisherConsumoMiniBar publisher) : base(numero, piso, tipo, costoNoche)
     {
         _tipoCama = tipoCama;
-        _miniBar = new MiniBar(Minibar);
+        _miniBar = new MiniBar(Minibar, publisher);
     }
 
     public void LlenarMiniBar()
