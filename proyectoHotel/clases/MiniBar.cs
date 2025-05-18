@@ -2,39 +2,28 @@
 
 public class MiniBar
 {
-    private int _licor;
-    private int _vino;
-    private int _agua;
-    private int _gaseosa;
-    private int _kitAseo;
-
-    public int Licor
+    public static class PreciosMinibar
     {
-        get => _licor;
-        set => _licor = value;
+        public static readonly Dictionary<string, int> Items = new()
+        {
+            { "botellasLicor", 25000 },
+            { "botellaVino", 50000 },
+            { "kitAseo", 9000 },
+            { "botellasAgua", 3500 },
+            { "gaseosas", 3000 },
+            { "batas", 70000 }
+        };
     }
 
-    public int Vino
+    private Dictionary<string, byte> _productos;
+
+    public MiniBar(Dictionary<string, byte> productos)
     {
-        get => _vino;
-        set => _vino = value;
+        _productos = productos;
     }
 
-    public int Agua
+    private void ManejarConsumo(string item, byte cantidad)
     {
-        get => _agua;
-        set => _agua = value;
-    }
-
-    public int Gaseosa
-    {
-        get => _gaseosa;
-        set => _gaseosa = value;
-    }
-
-    public int KitAseo
-    {
-        get => _kitAseo;
-        set => _kitAseo = value;
+        
     }
 }

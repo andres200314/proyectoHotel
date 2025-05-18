@@ -10,5 +10,13 @@ public class Persona
     private string _documento;
     private string _numeroTelefono;
 
-    private enum TipoDocumento { CC, TI, PA, CE }
+    public enum TipoDocumento { CC, TI, PA, CE }
+
+    public Persona(string nombre, TipoDocumento tipoDocumento, string documento, string numeroTelefono)
+    {
+        _nombre = nombre;
+        _tipoDocumento = tipoDocumento;
+        _documento = documento;
+        _numeroTelefono = numeroTelefono;
+    }
 }

@@ -8,6 +8,15 @@ public class Hotel
     private Recepcion _recepcion;
     private List<Habitacion> _habitaciones;
     private List<Persona> _personas;
-    private List<Reserva> _reservas;
-    private List<Factura> _facturas;
+
+    public Hotel(string nombre, string direccion, Oficina oficina, Recepcion recepcion)
+    {
+        _nombre = nombre;
+        _direccion = direccion;
+        _oficina = oficina;
+        _recepcion = recepcion;
+        _habitaciones = new List<Habitacion>();
+        _personas = new List<Persona>();
+    }
 }
+
