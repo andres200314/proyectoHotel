@@ -7,7 +7,7 @@ public abstract class Habitacion
     private double _costoNoche;
     private bool ocupada;
 
-    public Habitacion(uint numero, byte piso, double precio)
+    protected Habitacion(uint numero, byte piso, double precio)
     {
         _numero = numero;
         _piso = piso;
