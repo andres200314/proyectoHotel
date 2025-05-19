@@ -21,43 +21,60 @@ public class Recepcion
 
     public void CheckIn(Reserva reserva)
     {
-        // Aquí puedes usar el publisher si cambia el estado
-        // _publisherEstado.Informar_HabitacionOcupada(reserva.habitacion.id);
+        if (!reserva.Habitacion.Ocupada)
+        {
+            reserva.Habitacion.Ocupada = true;
+            _publisherEstado.Informar_HabitacionOcupada(reserva.Habitacion.Numero);
+        }
+        
     }
     
-    public void CheckOut(Reserva reserva)
+    public Factura CheckOut(Reserva reserva)
     {
         // Al hacer check-out también puede cambiar el estado
-        // _publisherEstado.Informar_HabitacionLimpia(reserva.IdHabitacion);
+        if (reserva.Habitacion.Ocupada)
+        {
+            reserva.Habitacion.Ocupada = false;
+            _publisherEstado.Informar_HabitacionLimpia(reserva.Habitacion.Numero);
+            
+            return Facturar(reserva);
+        }
+        else
+        {
+            throw new InvalidOperationException($"No se puede hacer Check-Out: la habitación {reserva.Habitacion.Numero} ya está desocupada.");
+        }
     }
 
     public void PediHabitacion(Habitacion habitacion, Persona persona)
     {
-        // Implementa la lógica necesaria
+        if (!habitacion.Ocupada)
+        {
+            habitacion.Ocupada = true;
+            _publisherEstado.Informar_HabitacionOcupada(habitacion.Numero);
+        }
     }
 
     public Factura Facturar(Reserva reserva)
     {
-        // Supongamos que genera una factura con ID incremental
-        var factura = new Factura(); // Asume que le asignas un ID
+        var factura = new Factura(reserva);
         _facturas.Add(factura);
-        // _publisherFactura.InformarFacturaExitosa(factura.Id); // Aquí informas del evento
+        ManejarFacturaExitosa(factura);
 
         return factura;
     }
 
     public void ManejarHabitacionLimpia(Habitacion habitacion)
     {
-        // _publisherEstado.Informar_HabitacionLimpia(habitacion.Id);
+        _publisherEstado.Informar_HabitacionLimpia(habitacion.Numero);
     }
     
     public void ManejarHabitacionOcupada(Habitacion habitacion)
     {
-        // _publisherEstado.Informar_HabitacionOcupada(habitacion.Id);
+        _publisherEstado.Informar_HabitacionOcupada(habitacion.Numero);
     }
      
     public void ManejarFacturaExitosa(Factura factura)
     {
-        // _publisherFactura.InformarFacturaExitosa(factura.Id);
+        _publisherFactura.InformarFacturaExitosa(factura.Id);
     }
 }

@@ -9,7 +9,7 @@ public class HabitacionSuit: Habitacion, IMiniBar
     private MiniBar _miniBar;
     
     public enum TipoCama { King, QueenYSemiDoble }
-    private Dictionary<string, byte> Minibar  = new()
+    private Dictionary<string, byte> itemsMiniBar  = new()
     {
         { "botellaVino", 1 },
         { "botellasLicor", 4 },
@@ -18,19 +18,30 @@ public class HabitacionSuit: Habitacion, IMiniBar
         { "batas", 2 }
     };
     
-    private static readonly byte Piso = 6;
+    public static readonly Piso Piso = Piso.P6;
+    public static readonly byte MaxHabitaciones = 5;
     private static readonly double CostoNoche = 500_000;
-    private static readonly byte MaxHabitaciones = 5;
     
 
-    public HabitacionSuit(uint numero, Piso piso, Tipo tipo, TipoCama tipoCama, PublisherConsumoMiniBar publisher) : base(numero, piso, tipo, CostoNoche)
+    public HabitacionSuit(int numero, Piso piso, Tipo tipo, TipoCama tipoCama, PublisherConsumoMiniBar publisher) : base(numero, piso, tipo, CostoNoche)
     {
         _tipoCama = tipoCama;
-        _miniBar = new MiniBar(Minibar, publisher);
+        _miniBar = new MiniBar(new Dictionary<string, byte>(itemsMiniBar), publisher);
     }
 
     public void LlenarMiniBar()
     {
-        throw new NotImplementedException();
+        _miniBar.Productos.Clear();
+        foreach (var item in itemsMiniBar)
+        {
+            _miniBar.Productos[item.Key] = item.Value;
+        }
     }
+
+    public void ConsumirMiniBar(string item, byte cantidad)
+    {
+        _miniBar.Consumir(item, cantidad);
+    }
+
+
 }

@@ -28,27 +28,28 @@ public class Oficina
 
     public void CancelarReserva(Reserva reserva, TipoCancelacion tipoCancelacion)
     {
-        // reserva.estado = Reserva.Estado.cancelada;
-        // Podrías decidir si es por cliente u hotel. Por ahora ejemplo con cliente
-        if (tipoCancelacion == TipoCancelacion.Cliente)
+        reserva.Estado = Reserva.TipoEstado.cancelada;
+
+        switch (tipoCancelacion)
         {
-            // _publisherCancelacion.Informar_CancelacionPorCliente(reserva.Id, "Cancelación solicitada por el cliente");
+            case TipoCancelacion.Cliente:
+                ManejarCancelacionCliente(reserva.Id, "Cancelación solicitada por el cliente", tipoCancelacion);
+                break;
+            case TipoCancelacion.Hotel:
+                ManejarCancelacionHotel(reserva.Id, "Realizada por el hotel", tipoCancelacion);
+                break;
         }
-        else if (tipoCancelacion == TipoCancelacion.Hotel)
-        {
-            // _publisherCancelacion.Informar_CancelacionPorHotel(reserva.Id, "Realizada por el hotel");
-        }
-        
     }
 
-    public void ManejarCancelacionCliente(int idReserva, string motivo)
+
+    public void ManejarCancelacionCliente(int idReserva, string motivo, TipoCancelacion tipoCancelacion)
     {
-        _publisherCancelacion.Informar_CancelacionPorCliente(idReserva, motivo);
+        _publisherCancelacion.Informar_Cancelacion(idReserva, motivo, tipoCancelacion);
     }
 
-    public void ManejarCancelacionHotel(int idReserva, string motivo)
+    public void ManejarCancelacionHotel(int idReserva, string motivo, TipoCancelacion tipoCancelacion)
     {
-        _publisherCancelacion.Informar_CancelacionPorHotel(idReserva, motivo);
+        _publisherCancelacion.Informar_Cancelacion(idReserva, motivo, tipoCancelacion);
     }
     
 }

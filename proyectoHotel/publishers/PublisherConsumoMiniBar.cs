@@ -6,7 +6,7 @@ public class PublisherConsumoMiniBar
     
     public event DelegadoConsumo? EventoConsumo;
     
-    public void InformarConsumoItem(string item, byte cantidad)
+    public void PublicarConsumoItem(string item, byte cantidad)
     {
         EventoConsumo?.Invoke(item, cantidad);
     }

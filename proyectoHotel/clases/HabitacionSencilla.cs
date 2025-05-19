@@ -8,14 +8,15 @@ public class HabitacionSencilla: Habitacion
     public enum TipoCama { Doble, DosSencillas }
     
     
-    private static readonly byte MinPiso = 2;
-    private static readonly byte MaxPiso = 4;
+    public static readonly byte MinPiso = 2;
+    public static readonly byte MaxPiso = 4;
+    public static readonly byte MaxHabitaciones = 30;
     private static readonly double CostoNoche = 200_000;
-    private static readonly byte MaxHabitaciones = 30;
+    
     
 
 
-    public HabitacionSencilla(uint numero, Piso piso, Tipo tipo, TipoCama tipoCama) : base(numero, piso, tipo, CostoNoche)
+    public HabitacionSencilla(int numero, Piso piso, Tipo tipo, TipoCama tipoCama) : base(numero, piso, tipo, CostoNoche)
     {
         _tipoCama = tipoCama;
     }

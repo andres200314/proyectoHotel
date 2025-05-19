@@ -1,17 +1,12 @@
-﻿namespace proyectoHotel.publishers;
+﻿using proyectoHotel.clases;
 
 public class PublisherCancelacionReserva
 {
-    public delegate void DelegadoCancelacion(int idReserva, string motivo);
+    public delegate void DelegadoCancelacion(int idReserva, string motivo, Oficina.TipoCancelacion tipo);
     public event DelegadoCancelacion? EventoCancelacion;
 
-    public void Informar_CancelacionPorCliente(int idReserva, string motivo)
+    public void Informar_Cancelacion(int idReserva, string motivo, Oficina.TipoCancelacion tipo)
     {
-        EventoCancelacion?.Invoke(idReserva, motivo);
-    }
-
-    public void Informar_CancelacionPorHotel(int idReserva, string motivo)
-    {
-        EventoCancelacion?.Invoke(idReserva, motivo);
+        EventoCancelacion?.Invoke(idReserva, motivo, tipo);
     }
 }

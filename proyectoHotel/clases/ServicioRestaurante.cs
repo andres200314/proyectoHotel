@@ -10,9 +10,20 @@ public class ServicioRestaurante
     };
 
     private double _servicioHabitacion = 5_000;
+    
+    private readonly string _mensaje = "Restaurante";
 
-    public void PedirComida(byte cantidadPlatos, bool servicioHabitacion)
+
+    public (string, double) PedirComida(string platillo, byte cantidad, bool servicioHabitacion)
     {
-        
+        if (!_menu.ContainsKey(platillo))
+            throw new ArgumentException("Platillo no existe");
+
+        double precioBase = _menu[platillo];
+        double precioTotal = precioBase * cantidad;
+        if (servicioHabitacion)
+            precioTotal += _servicioHabitacion;
+
+        return (_mensaje, precioTotal);
     }
 }
