@@ -7,7 +7,7 @@ public class Reserva
     private Persona reservante;
     private DateTime fechaInicio;
     private DateTime fechaFin;
-    private Estado estado;
+    private Estado estado = Estado.hecha;
 
     public enum Estado
     {
@@ -20,13 +20,12 @@ public class Reserva
     {
         
     }
-    public Reserva(Habitacion habitacion, Persona reservante, DateTime fechaInicio, DateTime fechaFin, Estado estado)
+    public Reserva(Habitacion habitacion, Persona reservante, DateTime fechaInicio, DateTime fechaFin)
     {
         this.habitacion = habitacion;
         this.reservante = reservante;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.estado = estado;
     }
 
     

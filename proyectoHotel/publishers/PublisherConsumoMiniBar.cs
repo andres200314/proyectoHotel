@@ -4,7 +4,7 @@ public class PublisherConsumoMiniBar
 {
     public delegate void DelegadoConsumo(string item, byte cantidad);
     
-    public event DelegadoConsumo EventoConsumo;
+    public event DelegadoConsumo? EventoConsumo;
     
     public void InformarConsumoItem(string item, byte cantidad)
     {
