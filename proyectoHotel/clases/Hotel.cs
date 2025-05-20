@@ -3,6 +3,7 @@ using proyectoHotel.excepciones;
 
 namespace proyectoHotel.clases;
 
+// version 1.0
 public class Hotel
 {
     private string _nombre;
