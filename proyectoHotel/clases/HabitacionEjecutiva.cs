@@ -5,10 +5,10 @@ namespace proyectoHotel.clases;
 
 public class HabitacionEjecutiva : Habitacion, IMiniBar
 {
-    private TipoCama _tipoCama;
+    private TipoCamaEjecutiva _tipoCama;
     private MiniBar _miniBar;
 
-    public enum TipoCama { Queen, DosSemiDobles }
+    public enum TipoCamaEjecutiva { Queen, DosSemiDobles }
 
     private readonly Dictionary<string, byte> _itemsMiniBar = new()
     {
@@ -23,11 +23,17 @@ public class HabitacionEjecutiva : Habitacion, IMiniBar
     private static readonly double CostoNoche = 350_000;
     public static readonly byte MaxHabitaciones = 10;
 
-    public HabitacionEjecutiva(int numero, Piso piso, Tipo tipo, TipoCama tipoCama, PublisherConsumoMiniBar publisher)
+    public HabitacionEjecutiva(int numero, Piso piso, Tipo tipo, TipoCamaEjecutiva tipoCama, PublisherConsumoMiniBar publisher)
         : base(numero, piso, tipo, CostoNoche)
     {
         _tipoCama = tipoCama;
         _miniBar = new MiniBar(new Dictionary<string, byte>(_itemsMiniBar), publisher);
+    }
+
+    public TipoCamaEjecutiva TipoCama
+    {
+        get => _tipoCama;
+        set => _tipoCama = value;
     }
 
     public void LlenarMiniBar()

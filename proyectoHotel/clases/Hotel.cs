@@ -80,7 +80,7 @@ public class Hotel
     {
         try
         {
-            Console.WriteLine($"[Hotel] Se registró el consumo de {cantidad} unidad(es) de '{producto}' desde el minibar.");
+            Console.WriteLine($"[MiniBar] Se registró el consumo de {cantidad} unidad(es) de '{producto}' desde el minibar.");
         }
         catch (Exception ex)
         {
@@ -131,7 +131,7 @@ public class Hotel
                     numero + i,
                     HabitacionEjecutiva.Piso,
                     Habitacion.Tipo.Ejecutiva,
-                    HabitacionEjecutiva.TipoCama.Queen,
+                    HabitacionEjecutiva.TipoCamaEjecutiva.Queen,
                     _publisherMiniBar
                 );
                 _habitaciones.Add(habitacion);

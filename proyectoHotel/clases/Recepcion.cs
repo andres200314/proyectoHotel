@@ -31,7 +31,7 @@ public class Recepcion
         if (!reserva.Habitacion.Ocupada)
         {
             reserva.Habitacion.Ocupada = true;
-            _publisherEstado.Informar_HabitacionOcupada(reserva.Habitacion.Numero);
+            _publisherEstado.Informar_HabitacionOcupada(reserva.Habitacion);
         }
         
     }
@@ -46,7 +46,7 @@ public class Recepcion
         if (reserva.Habitacion.Ocupada)
         {
             reserva.Habitacion.Ocupada = false;
-            _publisherEstado.Informar_HabitacionLimpia(reserva.Habitacion.Numero);
+            _publisherEstado.Informar_HabitacionLimpia(reserva.Habitacion);
             
             return Facturar(reserva);
         }
@@ -73,7 +73,7 @@ public class Recepcion
         if (!habitacion.Ocupada)
         {
             habitacion.Ocupada = true;
-            _publisherEstado.Informar_HabitacionOcupada(habitacion.Numero);
+            _publisherEstado.Informar_HabitacionOcupada(habitacion);
         }
     }
 
@@ -87,24 +87,24 @@ public class Recepcion
         return factura;
     }
 
-    private void OnCambioEstadoHabitacion(int numeroHabitacion)
+    private void OnCambioEstadoHabitacion(Habitacion habitacion)
     {
-        Console.WriteLine($"[Recepcion] La habitación {numeroHabitacion} cambió de estado.");
+        Console.WriteLine($"[Recepcion] La habitación {habitacion.Numero} está {(habitacion.Ocupada? "Ocupada" : "Libre")}");
     }
     
     public void ManejarHabitacionLimpia(Habitacion habitacion)
     {
-        _publisherEstado.Informar_HabitacionLimpia(habitacion.Numero);
+        _publisherEstado.Informar_HabitacionLimpia(habitacion);
     }
     
     public void ManejarHabitacionOcupada(Habitacion habitacion)
     {
-        _publisherEstado.Informar_HabitacionOcupada(habitacion.Numero);
+        _publisherEstado.Informar_HabitacionOcupada(habitacion);
     }
      
     public void ManejarFacturaExitosa(int facturaId)
     {
-        Console.WriteLine($"[Recepción] Se ha manejado exitosamente la factura con ID: {facturaId}");
+        Console.WriteLine($"[Recepción] Se ha creado exitosamente la factura con ID: {facturaId}");
     }
 
 }

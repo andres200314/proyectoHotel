@@ -1,17 +1,19 @@
-﻿namespace proyectoHotel.publishers;
+﻿using proyectoHotel.clases;
+
+namespace proyectoHotel.publishers;
 
 public class PublisherCambioEstadoHabitacion
 {
-    public delegate void DelegadoEstado(int idHabitacion);
+    public delegate void DelegadoEstado(Habitacion habitacion);
     public event DelegadoEstado? EventoEstado;
 
-    public void Informar_HabitacionLimpia(int numeroHabitacion)
+    public void Informar_HabitacionLimpia(Habitacion habitacion)
     {
-        EventoEstado?.Invoke(numeroHabitacion);
+        EventoEstado?.Invoke(habitacion);
     }
 
-    public void Informar_HabitacionOcupada(int numeroHabitacion)
+    public void Informar_HabitacionOcupada(Habitacion habitacion)
     {
-        EventoEstado?.Invoke(numeroHabitacion);
+        EventoEstado?.Invoke(habitacion);
     }
 }
