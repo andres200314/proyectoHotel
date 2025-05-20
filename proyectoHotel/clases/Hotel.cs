@@ -13,35 +13,61 @@ public class Hotel
     private List<Persona> _personas;
 
     private readonly PublisherConsumoMiniBar _publisherMiniBar = new();
+    private readonly PublisherCambioEstadoHabitacion _publisherCambioEstado = new();
+    private readonly PublisherCancelacionReserva _publisherCancelacion = new();
+    private readonly PublisherFacturacionExitosa _publisherFacturacionExitosa = new();
 
-    public Hotel(string nombre, string direccion, Oficina oficina, Recepcion recepcion)
+
+
+
+    public Hotel(string nombre, string direccion)
     {
         _nombre = nombre;
         _direccion = direccion;
-        _oficina = oficina;
-        _recepcion = recepcion;
+        _oficina = new Oficina(_publisherCancelacion);
+        _recepcion = new Recepcion(_publisherCambioEstado, _publisherFacturacionExitosa);
         _habitaciones = new List<Habitacion>();
         _personas = new List<Persona>();
 
         try
         {
             InicializarSistema();
-            CrearHabitacionesSencillas();
-            CrearHabitacionesEjecutivas();
-            CrearHabitacionesSuit();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"[Error en inicialización del hotel]: {ex.Message}");
-            throw; // Re-lanzamos si queremos que la app lo maneje externamente también
+            throw; 
         }
     }
 
-    public void InicializarSistema()
+    public Oficina Oficina
+    {
+        get => _oficina;
+    }
+
+    public Recepcion Recepcion
+    {
+        get => _recepcion;
+    }
+
+    public List<Habitacion> Habitaciones
+    {
+        get => _habitaciones;
+    }
+
+    public List<Persona> Personas
+    {
+        get => _personas;
+    }
+
+    private void InicializarSistema()
     {
         try
         {
             _publisherMiniBar.EventoConsumo += RegistrarConsumo;
+            CrearHabitacionesSencillas();
+            CrearHabitacionesEjecutivas();
+            CrearHabitacionesSuit();
         }
         catch (Exception ex)
         {

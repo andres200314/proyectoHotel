@@ -13,8 +13,8 @@
 
         public enum Tipo { Sencilla, Ejecutiva, Suit }
 
-        private ServicioRestaurante _servicioRestaurante;
-        private ServicioLavanderia _servicioLavanderia;
+        private readonly ServicioRestaurante _servicioRestaurante = new();
+        private readonly ServicioLavanderia _servicioLavanderia = new();
 
         protected Habitacion(int numero, Piso piso, Tipo tipo, double costoNoche)
         {
@@ -62,6 +62,11 @@
             {
                 throw new Exception($"Error en el servicio de lavandería de la habitación {_numero}: {ex.Message}", ex);
             }
+        }
+        
+        public override string ToString()
+        {
+            return $"Habitacion {_tipo} {_numero}";
         }
     }
 }

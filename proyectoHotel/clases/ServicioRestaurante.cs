@@ -16,10 +16,9 @@ public class ServicioRestaurante
 
     public (string, double) PedirComida(string platillo, byte cantidad, bool servicioHabitacion)
     {
-        if (!_menu.ContainsKey(platillo))
+        if (!_menu.TryGetValue(platillo, out var precioBase))
             throw new ArgumentException("Platillo no existe");
 
-        double precioBase = _menu[platillo];
         double precioTotal = precioBase * cantidad;
         if (servicioHabitacion)
             precioTotal += _servicioHabitacion;

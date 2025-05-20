@@ -46,5 +46,13 @@ public class Factura
 
         return _total;
     }
+    
+    public override string ToString()
+    {
+        return $"Factura ID: {_id}\n" +
+               $"Reserva: {_reserva}\n" +
+               $"Total a pagar: {CalcularTotal():C2}";
+    }
+
 
 }

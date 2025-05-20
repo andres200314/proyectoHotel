@@ -19,4 +19,9 @@ public class Persona
         _documento = documento;
         _numeroTelefono = numeroTelefono;
     }
+    
+    public override string ToString()
+    {
+        return _nombre;
+    }
 }

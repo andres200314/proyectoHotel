@@ -28,6 +28,7 @@ public class HabitacionSuit: Habitacion, IMiniBar
         _tipoCama = tipoCama;
         _miniBar = new MiniBar(new Dictionary<string, byte>(itemsMiniBar), publisher);
     }
+    
 
     public void LlenarMiniBar()
     {
@@ -40,8 +41,10 @@ public class HabitacionSuit: Habitacion, IMiniBar
 
     public void ConsumirMiniBar(string item, byte cantidad)
     {
-        _miniBar.Consumir(item, cantidad);
+        var consumo = _miniBar.Consumir(item, cantidad);
+        this.Consumos.Add(consumo);
     }
+    
 
 
 }

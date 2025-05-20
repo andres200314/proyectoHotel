@@ -3,12 +3,7 @@
 public class Reserva
 {
     private int _id;
-
-    
-
     private Habitacion _habitacion;
-
-    
 
     private Persona _reservante;
     private DateTime _fechaInicio;
@@ -39,6 +34,11 @@ public class Reserva
     }
 
 
+    public Persona Reservante
+    {
+        get => _reservante;
+    }
+
     public Reserva()
     {
         
@@ -50,5 +50,15 @@ public class Reserva
         _reservante = reservante;
         _fechaInicio = fechaInicio;
         _fechaFin = fechaFin;
+    }
+    
+    public override string ToString()
+    {
+        return $"Reserva ID: {Id}\n" +
+               $"Habitación: {Habitacion?.ToString() ?? "No asignada"}\n" +
+               $"Reservante: {Reservante?.ToString() ?? "No asignado"}\n" +
+               $"Fecha Inicio: {FechaInicio:dd/MM/yyyy}\n" +
+               $"Fecha Fin: {FechaFin:dd/MM/yyyy}\n" +
+               $"Estado: {Estado}";
     }
 }

@@ -28,18 +28,23 @@ public class MiniBar
         _publisher = publisher;
     }
 
-    public void Consumir(string item, byte cantidad)
+    public (string, double) Consumir(string item, byte cantidad)
     {
-        if (_productos.ContainsKey(item) && _productos[item] >= cantidad)
+        if (!_productos.ContainsKey(item))
         {
-            _productos[item] -= cantidad;
+            throw new InvalidOperationException($"El item '{item}' no existe en el minibar.");
+        }
 
-            // Dispara el evento de consumo
-            _publisher.PublicarConsumoItem(item, cantidad);
-        }
-        else
+        if (_productos[item] < cantidad)
         {
-            Console.WriteLine($"No se pudo consumir '{item}' - stock insuficiente o no existe.");
+            throw new InvalidOperationException($"Stock insuficiente de '{item}'. Disponible: {_productos[item]}");
         }
+
+        _productos[item] -= cantidad;
+        int precioUnitario = PreciosMinibar.Precios[item];
+        int totalConsumo = precioUnitario * cantidad;
+
+        _publisher.PublicarConsumoItem(item, cantidad);
+        return ("MiniBar", totalConsumo);
     }
 }
