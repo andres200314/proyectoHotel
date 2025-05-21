@@ -3,20 +3,20 @@
     public abstract class Habitacion
     {
         private int _numero;
-        private Piso _piso;
-        private Tipo _tipo;
+        private Pisos _piso;
+        private TipoHabitacion _tipo;
         private double _costoNoche;
         private bool _ocupada;
         private List<(string, double)> _consumos;
 
-        public enum Piso { P1, P2, P3, P4, P5, P6 }
+        public enum Pisos { P1, P2, P3, P4, P5, P6 }
 
-        public enum Tipo { Sencilla, Ejecutiva, Suit }
+        public enum TipoHabitacion { Sencilla, Ejecutiva, Suit }
 
         private readonly ServicioRestaurante _servicioRestaurante = new();
         private readonly ServicioLavanderia _servicioLavanderia = new();
 
-        protected Habitacion(int numero, Piso piso, Tipo tipo, double costoNoche)
+        protected Habitacion(int numero, Pisos piso, TipoHabitacion tipo, double costoNoche)
         {
             _numero = numero;
             _piso = piso;
@@ -35,6 +35,18 @@
         }
 
         public double CostoNoche => _costoNoche;
+
+        public Pisos Piso
+        {
+            get => _piso;
+            set => _piso = value;
+        }
+
+        public TipoHabitacion Tipo
+        {
+            get => _tipo;
+            set => _tipo = value;
+        }
 
         public List<(string, double)> Consumos => _consumos;
 

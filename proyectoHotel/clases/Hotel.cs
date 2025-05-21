@@ -92,8 +92,8 @@ public class Hotel
     {
         try
         {
-            var tipo = Habitacion.Tipo.Sencilla;
-            var tipoCama = HabitacionSencilla.TipoCama.Doble;
+            var tipo = Habitacion.TipoHabitacion.Sencilla;
+            var tipoCama = HabitacionSencilla.TipoCamaSencilla.Doble;
 
             for (int i = HabitacionSencilla.MinPiso; i <= HabitacionSencilla.MaxPiso; i++)
             {
@@ -102,7 +102,7 @@ public class Hotel
                     int numeroHabitacion = i * 100 + j;
                     string nombrePiso = $"P{i}";
 
-                    if (Enum.TryParse<Habitacion.Piso>(nombrePiso, out var piso))
+                    if (Enum.TryParse<Habitacion.Pisos>(nombrePiso, out var piso))
                     {
                         var habitacion = new HabitacionSencilla(numeroHabitacion, piso, tipo, tipoCama);
                         _habitaciones.Add(habitacion);
@@ -130,7 +130,7 @@ public class Hotel
                 var habitacion = new HabitacionEjecutiva(
                     numero + i,
                     HabitacionEjecutiva.Piso,
-                    Habitacion.Tipo.Ejecutiva,
+                    Habitacion.TipoHabitacion.Ejecutiva,
                     HabitacionEjecutiva.TipoCamaEjecutiva.Queen,
                     _publisherMiniBar
                 );
@@ -153,8 +153,8 @@ public class Hotel
                 var habitacion = new HabitacionSuit(
                     numero + i,
                     HabitacionSuit.Piso,
-                    Habitacion.Tipo.Suit,
-                    HabitacionSuit.TipoCama.King,
+                    Habitacion.TipoHabitacion.Suit,
+                    HabitacionSuit.TipoCamaSuit.King,
                     _publisherMiniBar
                 );
                 _habitaciones.Add(habitacion);

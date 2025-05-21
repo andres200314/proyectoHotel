@@ -19,16 +19,18 @@ public class HabitacionEjecutiva : Habitacion, IMiniBar
         { "batas", 0 }
     };
 
-    public static readonly Piso Piso = Piso.P5;
-    private static readonly double CostoNoche = 350_000;
+    public static readonly Pisos Piso = Pisos.P5;
+    private static readonly double _CostoNoche = 350_000;
     public static readonly byte MaxHabitaciones = 10;
 
-    public HabitacionEjecutiva(int numero, Piso piso, Tipo tipo, TipoCamaEjecutiva tipoCama, PublisherConsumoMiniBar publisher)
-        : base(numero, piso, tipo, CostoNoche)
+    public HabitacionEjecutiva(int numero, Pisos piso, TipoHabitacion tipo, TipoCamaEjecutiva tipoCama, PublisherConsumoMiniBar publisher)
+        : base(numero, piso, tipo, _CostoNoche)
     {
         _tipoCama = tipoCama;
         _miniBar = new MiniBar(new Dictionary<string, byte>(_itemsMiniBar), publisher);
     }
+
+    public static double CostoNoche => _CostoNoche;
 
     public TipoCamaEjecutiva TipoCama
     {

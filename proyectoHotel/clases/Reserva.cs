@@ -12,7 +12,7 @@ public class Reserva
 
     public enum TipoEstado { hecha, confirmada, cancelada }
     
-    public int Id { get => _id; }
+    public int Id { get => _id; set => _id = value; }
     public Habitacion Habitacion
     {
         get => _habitacion;
